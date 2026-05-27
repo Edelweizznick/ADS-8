@@ -16,9 +16,23 @@ void makeTree(BST<std::string>& tree, const char* filename) {
 
   std::string word;
   char ch;
+  bool novelStarted = false;
+
   while (file.get(ch)) {
+    if (!novelStarted) {
+      if (ch == 'C' && word == "hapter") {  // ловим "CHAPTER"
+        novelStarted = true;
+        word.clear();
+      }
+      if (std::isalpha(static_cast<unsigned char>(ch))) {
+        word += static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
+      } else {
+        word.clear();
+      }
+      continue;
+    }
+
     if (std::isalpha(static_cast<unsigned char>(ch))) {
-      // только латинские буквы → приводим к нижнему регистру
       word += static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
     } else {
       if (!word.empty()) {
@@ -27,6 +41,7 @@ void makeTree(BST<std::string>& tree, const char* filename) {
       }
     }
   }
+
   if (!word.empty()) {
     tree.insert(word);
   }
