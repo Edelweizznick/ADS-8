@@ -1,6 +1,17 @@
 // Copyright 2021 NNTU-CS
 #include "bst.h"
+#include <iostream>
+
+void makeTree(BST<std::string>& tree, const char* filename);
+void printFreq(BST<std::string>& tree);
 
 int main() {
-    return 0;
+  BST<std::string> tree;
+
+  makeTree(tree, "src/war_peace.txt");
+  printFreq(tree);
+
+  std::cout << "Высота дерева: " << tree.depth() << std::endl;
+
+  return 0;
 }
