@@ -15,13 +15,11 @@ void makeTree(BST<std::string>& tree, const char* filename) {
   }
 
   std::string line;
-  int lineCount = 0;
   bool novelStarted = false;
 
   while (std::getline(file, line)) {
-    lineCount++;
     if (!novelStarted) {
-      if (lineCount > 150) {
+      if (line.find("Well, Prince") != std::string::npos) {
         novelStarted = true;
       }
       continue;
