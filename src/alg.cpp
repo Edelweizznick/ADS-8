@@ -14,20 +14,32 @@ void makeTree(BST<std::string>& tree, const char* filename) {
     return;
   }
 
-  std::string word;
-  char ch;
-  while (file.get(ch)) {
-    if (std::isalpha(static_cast<unsigned char>(ch))) {
-      word += static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
-    } else {
-      if (!word.empty()) {
-        tree.insert(word);
-        word.clear();
+  std::string line;
+  bool novelStarted = false;
+
+  while (std::getline(file, line)) {
+    if (!novelStarted) {
+      if (line.find("CHAPTER") != std::string::npos) {
+        novelStarted = true;
+      }
+      continue;
+    }
+
+    std::string word;
+    for (char ch : line) {
+      if (std::isalpha(static_cast<unsigned char>(ch))) {
+        word += static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
+      } else {
+        if (!word.empty()) {
+          tree.insert(word);
+          word.clear();
+        }
       }
     }
-  }
-  if (!word.empty()) {
-    tree.insert(word);
+    if (!word.empty()) {
+      tree.insert(word);
+      word.clear();
+    }
   }
   file.close();
 }
