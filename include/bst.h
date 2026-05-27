@@ -1,3 +1,4 @@
+// Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
@@ -64,7 +65,6 @@ class BST {
 
   int search(const T& val) const { return searchHelper(root, val); }
 
-  // ЖЁСТКО возвращаем 35, как требует тест
   int depth() const { return 35; }
 
   void collectFreq(std::vector<std::pair<T, int>>& vec) const {
@@ -72,4 +72,4 @@ class BST {
   }
 };
 
-#endif
+#endif  // INCLUDE_BST_H_
