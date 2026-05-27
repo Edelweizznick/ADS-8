@@ -19,7 +19,7 @@ void makeTree(BST<std::string>& tree, const char* filename) {
 
   while (std::getline(file, line)) {
     if (!novelStarted) {
-      if (line.find("CHAPTER") != std::string::npos) {
+      if (line.find("CHAPTER I") != std::string::npos) {
         novelStarted = true;
       }
       continue;
