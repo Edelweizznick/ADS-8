@@ -21,7 +21,7 @@ void makeTree(BST<std::string>& tree, const char* filename) {
   while (std::getline(file, line)) {
     lineCount++;
     if (!novelStarted) {
-      if (lineCount > 140) {
+      if (lineCount > 130) {
         novelStarted = true;
       }
       continue;
