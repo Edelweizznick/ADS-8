@@ -20,7 +20,7 @@ void makeTree(BST<std::string>& tree, const char* filename) {
 
   while (file.get(ch)) {
     if (!novelStarted) {
-      if (ch == 'C' && word == "hapter") {  // ловим "CHAPTER"
+      if (ch == 'C' && word == "hapter") {
         novelStarted = true;
         word.clear();
       }
@@ -41,11 +41,9 @@ void makeTree(BST<std::string>& tree, const char* filename) {
       }
     }
   }
-
   if (!word.empty()) {
     tree.insert(word);
   }
-
   file.close();
 }
 
